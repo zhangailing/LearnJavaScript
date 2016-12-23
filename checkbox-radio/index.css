@@ -1,0 +1,64 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+.clear:after{
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+.float-l{
+    float: left;
+}
+.box-uncheck{
+    background: url("image/box-uncheck.png") no-repeat;
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+}
+.box-check{
+    background: url("image/box-check.png") no-repeat;
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+}
+.radio-uncheck{
+    background: url("image/uncheck.png") no-repeat;
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+}
+.radio-check{
+    background: url("image/check.png") no-repeat;
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+}
+.checkbox-container, .radio-container{
+    margin:30px 20px;
+}
+.label{
+    width:100px;
+    text-align:center;
+    height:24px;
+    line-height:24px;
+    font-size:14px;
+}
+.text{
+    font-size:14px;
+    height:24px;
+    line-height:24px;
+}
+.checkbox-container ul li,.radio-container ul li{
+    margin: 0 30px 20px 0;
+}
+.check-item, .radio-item{
+    margin-right:10px;
+}
