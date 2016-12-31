@@ -1,0 +1,21 @@
+var util = {
+			ready : [],
+			onReady : function(fun){
+				util.ready.push(fun);
+			}
+		}
+		
+		window.onload = function(){
+			var funs = util.ready;
+			for(var i=0;i<funs.length;i++){
+				funs[i]();
+			}
+		}
+		
+		
+		util.onReady(function(){
+			$("#result").html("util第1次赋值");
+		});
+		util.onReady(function(){
+			$("#result").html($("#result").html()+"util第2次赋值");
+		});
