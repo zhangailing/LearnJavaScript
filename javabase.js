@@ -360,4 +360,120 @@ function $(selector){
     }
 }
 //text 9 事件
+// 给一个element绑定一个针对event事件的响应，响应函数为listener
+function addEvent(element, event, listener) {
+    element.addEventListener(event,listener);
+}
+// 移除element对象对于event事件发生时执行listener的响应
+function removeEvent(element, event, listener) {
+    element.removeEventListener(event,listener);
+}
+// 实现对click事件的绑定
+function addClickEvent(element, listener) {
+    addEvent(element,'click',listener);
+}
+// 实现对于按Enter键时的事件绑定
+function addEnterEvent(element, listener) {
+    addEvent(element,'keydown',function(e){
+        var event = e||window.event;
+        var keyCode = event.which||event.keyCode;
+        if(keyCode === 13){
+            listener.call(element,event);
+        }
+    });
+}
+// 接下来我们把上面几个函数和$做一下结合，把他们变成$对象的一些方法
+$.on = addEvent;
+$.un = removeEvent;
+$.click = addClickEvent;
+$.enter = addEnterEvent;
+//事件代理
+/*<ul id="list">
+    <li id="item1">Simon</li>
+    <li id="item2">Kenner</li>
+    <li id="item3">Erik</li>
+</ul>*/
+//不使用事件代理的缺点：每改变一次dom,事件就需重新绑定一次
+function clickListener(event) {
+    console.log(event);
+}
+//事件代理
+function delegateEvent(element,tag,eventName,listener){
+    addEvent(element,eventName,function(e){
+        var event = e||window.event;
+        var target =event.target||event.srcElement;
+        if (target&&target.targetName === tag.toUpperCase()){
+            listener.call(target,event);
+        }
+    });
+}
+$.delegate=delegateEvent;
+$.delegate($("#list"), "li", "click", clickListener);
 
+//text 10
+// 学习Ajax，并尝试自己封装一个Ajax方法。
+function ajax(url,options){
+    var xmlhttp;//创建对象
+    if(window.XMLHttpRequest){
+        xmlhttp = new XMLHttpRequest();
+    }else{//兼容IE5,IE6
+        xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    //处理data
+    if(options.data){
+        var dataarr = [];
+        for(var item in options.data){
+            dataarr.push(item + '='+ encodeURI(options.data[item]));
+        }
+        var data =dataarr.join('&');
+    }
+    //处理type
+    if(!options.type){
+        options.type = 'GET';
+    }
+    options.type = options.type.toUpperCase();
+    //发送请求
+    if(options.type === 'GET'){
+        var myURL = '';
+        if(options.data){
+            myURL = url+'?'+data;
+        }else{
+            myURL = url;
+        }
+        xmlhttp.open('GET',myURL,true);
+        xmlhttp.send();
+    }else if (options.type === 'POST'){
+        xmlhttp.open('POST',url,true);
+        xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        xmlhttp.send(data);
+    }
+    //readyState
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState===4){
+            if(xmlhttp.status===200){
+                if(options.onsuccess){
+                    options.onsuccess(xmlhttp.responseText,xmlhttp.responseXML);
+                }
+            }
+            else{
+                if(options.onfail){
+                    options.onfail();
+                }
+            }
+        }
+    }
+}//使用示例
+ajax(
+    'prompt.php',
+    {
+     data:{
+         q:'a'
+     },
+     onsuccess:function(responseText,xhr){
+         console.log(responseText);
+     },
+     onfail:function(){
+         console.log('fail');
+     }
+    }
+);
