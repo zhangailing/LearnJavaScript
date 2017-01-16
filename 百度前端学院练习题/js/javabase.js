@@ -189,10 +189,11 @@ function isMobilePhone(phone) {
 }
 //text7
 function hasClass(element,className){
-    var name=element.className.match(/\s+/g)||[];
+    var name=element.className.match(/\S+/g)||[];
     if(name.indexOf(className)!== -1){
         return true;
-    }
+    }else
+       return false;
 }
 // 为element增加一个样式名为newClassName的新样式
 function addClass(element,newClassName){
@@ -202,7 +203,7 @@ function addClass(element,newClassName){
 }
 // 移除element中的样式oldClassName
 function removeClass(element,oldClassName){
-    if(hasClass(element,newClassName)){
+    if(hasClass(element,oldClassName)){
         element.className=trim(element.className.replace(oldClassName,''));
     }
 }
@@ -362,10 +363,18 @@ function $(selector){
     }
 }
 //text 9 事件
-/*
+
 // 给一个element绑定一个针对event事件的响应，响应函数为listener
-function addEvent(element, event, listener) {
+/*function addEvent(element, event, listener) {
     element.addEventListener(event,listener);
+}*/
+function addEvent(obj,type,fn){
+    if(obj.attachEvent){
+        obj['e' + type + fn] = fn;
+        obj[type + fn] = function(){obj['e'+type+fn](window.event);}
+        obj.attachEvent('on'+type.obj[type+fn]);
+    }else
+        obj.addEventListener(type,fn,false);
 }
 // 移除element对象对于event事件发生时执行listener的响应
 function removeEvent(element, event, listener) {
@@ -390,18 +399,18 @@ $.on = addEvent;
 $.un = removeEvent;
 $.click = addClickEvent;
 $.enter = addEnterEvent;
-//事件代理
-/!*<ul id="list">
+/*//事件代理
+<ul id="list">
     <li id="item1">Simon</li>
     <li id="item2">Kenner</li>
     <li id="item3">Erik</li>
-</ul>*!/
+</ul>
 //不使用事件代理的缺点：每改变一次dom,事件就需重新绑定一次
 function clickListener(event) {
     console.log(event);
-}
+}*/
 //事件代理
-function delegateEvent(element,tag,eventName,listener){
+/*function delegateEvent(element,tag,eventName,listener){
     addEvent(element,eventName,function(e){
         var event = e||window.event;
         var target =event.target||event.srcElement;
@@ -409,10 +418,9 @@ function delegateEvent(element,tag,eventName,listener){
             listener.call(target,event);
         }
     });
-}
-$.delegate=delegateEvent;
-$.delegate($("#list"), "li", "click", clickListener);
-*/
+}*/
+/*$.delegate=delegateEvent;
+$.delegate($("#list"), "li", "click", clickListener);*/
 
 //text 10
 // 学习Ajax，并尝试自己封装一个Ajax方法。
