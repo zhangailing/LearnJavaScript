@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft YaHei, sans-serif;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    min-width: 980px;
+    background: #e2e2e2;
+}
+
+.center {
+    margin: 0 auto;
+    width: 980px;
+}
+.drag-container {
+    height: 452px;
+    margin-top: 20px;
+}
+
+.drag-wrap{
+    width: 150px;
+    height: 450px;
+    background: #92C0EF;
+    margin-right: 160px;
+    float: left;
+    border:1px solid #000;
+    position: relative;
+}
+.drag{
+    width: 150px;
+    height: 40px;
+    background: #47456D;
+    border: 1px solid #000;
+    margin: -1px;
+    color: #ffffff;
+    line-height: 40px;
+    text-align: center;
+    cursor: move;
+    position: absolute;
+}
+.dragging {
+    visibility: hidden;
+}

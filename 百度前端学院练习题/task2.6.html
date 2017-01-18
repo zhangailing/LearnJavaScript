@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-Hans">
+    <meta charset="UTF-8">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/task2.6.css"/>
+</head>
+<body>
+<div class="header">
+    <h1>ToDoList</h1>
+</div>
+<div class="main">
+    <div class="left">
+        <div class="all-tasks list-title active">所有任务(<span>7</span>)</div>
+        <div class="list-title">分类列表</div>
+        <div class="list">
+            <ul>
+                <li>
+                    <h2><i class="fa fa-folder-open"></i>默认分类(<span>2</span>)</h2>
+                    <ul>
+                        <li>
+                            <h3 class="active"><i class="fa fa-file-o"></i>task1(<span>2</span>)<i class="fa fa-trash-o"></i></h3>
+                        </li>
+                        <li>
+                            <h3><i class="fa fa-file-o"></i>task1(<span>2</span>)<i class="fa fa-trash-o"></i></h3>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <button class="add add-class"><i class="fa fa-plus"></i>新增分类</button>
+    </div>
+    <div class="mid">
+        <div class="status">
+            <button class="active">所有</button>
+            <button >未完成</button>
+            <button >已完成</button>
+        </div>
+        <div class="task-list">
+            <h2>2016-04-28</h2>
+            <ul>
+                <li class="active">todo-1</li>
+                <li>todo-2</li>
+            </ul>
+        </div>
+        <button class="add add-task"><i class="fa fa-plus"></i>新增任务</button>
+    </div>
+    <div class="right">
+        <div class="title">
+            <div class="todo-name">todo-1</div>
+            <div class="manipulate">
+                <a><i class="fa fa-check-square-o"></i></a>
+                <a><i class="fa fa-pencil-square-o"></i></a>
+            </div>
+        </div>
+        <div class="task-date">
+            任务日期：<span>2016-05-05</span>
+        </div>
+        <div class="content">
+            本应用为离线应用，数据将存储在本地硬盘
+
+            左侧为分类列表
+            中间为当前分类下的任务列表
+            右侧为任务详情
+
+            可以添加删除分类，添加任务，修改任务，以及给任务标记是否完成等功能
+        </div>
+        <div class="button-area">
+            <span class="info"></span>
+            <button class="save">保存</button>
+            <button class="cancel-save">放弃</button>
+        </div>
+    </div>
+</div>
+<div class="cover">
+    <div class="modal">
+        <div class="modal-head">新增分类</div>
+        <div class="modal-body">
+            选择主分类：<select id="modal-select"><option value="volvo">volvo</option></select><br>
+            新分类名称：<input id="newCateName" type="text"/>
+        </div>
+        <div class="modal-foot">
+            <button>取消</button>
+            <button>确认</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/util.js"></script>
+<script src="js/task2.6.js"></script>
+</html>
