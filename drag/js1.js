@@ -43,26 +43,23 @@ $(document).ready(function(){
        var $child = $(selector1);
        var $parent = $(selector2);
        $child.on("mousedown",function(event){
-           console.log($child);
-          $child.disX = event.clientX - $child.offsetLeft;
-          $child.disY = event.clientY - $child.offsetTop;
+          $child.disX = event.clientX - $child.offset().left;
+          $child.disY = event.clientY - $child.offset().top;
            document.onmousemove = onMouseMove;
            document.onmouseup = onMouseUp;
        });
        function onMouseMove(event){
            var l = event.clientX - $child.disX;
            var t = event.clientY - $child.disY;
-           //console.log(l);
            if(l < 0){
                l = 0;
-           }else if(l > $parent.offsetWidth - $child.offsetWidth){
-               l = $parent.offsetWidth - $child.offsetWidth;
-               console.log(l);
+           }else if(l > $parent.innerWidth() - $child.innerWidth()){
+               l = $parent.innerWidth() - $child.innerWidth();
            }
            if(t < 0){
                t = 0;
-           }else if(t > $parent.offsetHeight - $child.offsetHeight){
-               t = $parent.offsetHeight - $child.offsetHeightl
+           }else if(t > $parent.innerHeight() - $child.innerHeight()){
+               t = $parent.innerHeight() - $child.innerHeight();
            }
            $child.css({
                left:l + 'px',
