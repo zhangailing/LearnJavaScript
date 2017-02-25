@@ -1,0 +1,32 @@
+body{
+	font-family: "Helvetica Neue", Helvetica, Arial,"Microsoft YaheiUI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
+	margin:50px;
+	
+}
+.btn{
+	margin:35px 0 0 0;
+}
+@media only screen and (min-width: 1200px){/*大屏幕,大桌面显示器*/
+	body{
+		font-size:18px;
+	}
+	button{
+		width:70%;
+	}
+}
+@media only screen and (min-width:992px){/*中等屏幕,桌面显示器*/
+	body{
+	
+		font-size:17px;
+	}
+	button{
+		width:70%;
+	}
+}
+@media only screen and (min-width:768px){/*小屏幕，平板*/
+	body{
+		font-size:16px;
+	}
+}
+
+
